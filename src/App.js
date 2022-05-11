@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./styles/app.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const reference = 8;
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      valor: 0,
+    };
+
+    this.handleModify = this.handleModify.bind(this);
+  }
+
+  handleModify() {
+    this.setState((estadoAnterior) => ({
+      valor: estadoAnterior.valor + 1,
+    }));
+  }
+
+  render() {
+    const { valor } = this.state;
+
+    return (
+      <div className="App">
+        <div className="conteudo">
+          <span>{`Tabuada do ${reference}`}</span>
+          <span>{`${reference} x ${reference * valor}`}</span>
+          <button onClick={() => this.handleModify()}>Modificar</button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
